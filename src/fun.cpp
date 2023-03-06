@@ -34,14 +34,16 @@ unsigned int faStr2(const char *str) {
     while (*str) {
         if (*str != ' ' && word == false) {
             word = true;
-            if (*str < 'A' || *str > 'Z')
+            if (*str < 'A' || *str > 'Z') {
                 rightWord = false;
-        }
-        else if (*str == ' ' && word == true) {
+            }
+        } else if (*str == ' ' && word == true) {
             word = false;
             if (rightWord == true) {
                 num++;
-            } else rightWord = true;
+            } else {
+                rightWord = true;
+            }
         }
         else if ((*str < 'a' || *str > 'z') && word == true) {
             rightWord = false;
@@ -55,5 +57,24 @@ unsigned int faStr2(const char *str) {
 }
 
 unsigned int faStr3(const char *str) {
-    return 0;
+    int wordsNum = 0;
+    int lettersNum = 0;
+    bool word = false;
+    while (*str) {
+        if (*str != ' ' && word == false) {
+            word = true;
+        }
+        else if (*str == ' ' && word == true) {
+            word = false;
+            wordsNum++;
+        }
+        if (*str != ' ') {
+            lettersNum++;
+        }
+        ++str;
+    }
+    if (word == true) {
+        wordsNum++;
+    }
+    return lettersNum/wordsNum;
 }
